@@ -1,5 +1,5 @@
 import axios from "axios";
-import "./App.css";
+import "./CSS/App.css";
 import ViewArticles from "./Components/ViewArticles";
 import { Route, Routes } from "react-router-dom";
 import ViewSingleArticle from "./Components/ViewSingleArticle";

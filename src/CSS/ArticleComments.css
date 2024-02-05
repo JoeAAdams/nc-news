@@ -1,0 +1,19 @@
+.article-comment {
+    margin:0 2em 0 2em ;
+    border-top: 1px solid black;
+}
+
+.comment-info {
+    display: flex;
+    gap: 1em;
+}
+
+.votes {
+
+}
+
+@media (max-width: 480px) {
+    .article-comment {
+        margin: 0;
+    }
+}
