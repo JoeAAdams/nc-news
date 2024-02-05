@@ -1,19 +1,16 @@
-import axios from 'axios'
-import './App.css'
-import ViewArticles from './Components/ViewArticles'
-
-export const newsApi = axios.create({
-  baseURL: "https://nc-news-wpw8.onrender.com/api/"
-})
+import axios from "axios";
+import "./App.css";
+import ViewArticles from "./Components/ViewArticles";
+import { Route, Routes } from "react-router-dom";
+import ViewSingleArticle from "./Components/ViewSingleArticle";
 
 function App() {
-  
-
-  return (
-    <>
-      <ViewArticles/>
-    </>
-  )
+    return (
+        <Routes>
+            <Route path="/" element={<ViewArticles />} />
+            <Route path="/article/:article_id" element={<ViewSingleArticle/>} />
+        </Routes>
+    );
 }
 
-export default App
+export default App;
