@@ -1,0 +1,14 @@
+#article {
+    margin: 0 2em 0 2em;
+}
+
+#body {
+    margin-bottom: 3em;
+}
+
+@media (max-width: 480px) {
+    img {
+        height: auto;
+        width: 100%;
+    }
+}
