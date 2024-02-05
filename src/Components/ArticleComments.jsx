@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchArticleComments } from "../Utils/API";
-import '../CSS/ArticleComments.css'
+import Comment from "./Comment";
+import "../CSS/ArticleComments.css";
 
 export default function ArticleComments({ article_id }) {
     const [comments, setComments] = useState([]);
@@ -15,17 +16,10 @@ export default function ArticleComments({ article_id }) {
         <section>
             {comments.map((comment) => {
                 return (
-                    <div
-                        className="article-comment"
+                    <Comment
                         key={`${comment.created_at}${comment.author}`}
-                    >
-                        <p>{comment.body}</p>
-                        <div className="comment-info">
-                            <p>{comment.author}</p>
-                            <p>{Date(comment.created_at)}</p>
-                            <p className="votes">Votes: {comment.votes}</p>
-                        </div>
-                    </div>
+                        comment={comment}
+                    />
                 );
             })}
         </section>
