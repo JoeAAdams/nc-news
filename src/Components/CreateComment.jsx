@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createNewComment } from "../Utils/API";
 import "../CSS/CreateComment.css";
+import { UserContext } from "./UserProvider";
 
 export default function CreateComment({article_id, setRender}) {
     const [newComment, setNewComment] = useState("");
     const [isDisabled, setIsDisabled] = useState(false);
     const [error, setError] = useState(false);
+    const {user} = useContext(UserContext)
  
 
     const handleNewComment = (event) => {
         event.preventDefault();
         const commentObject = {
-            username: "cooljmessy",
+            username: user.username,
             body: newComment,
         };
         if (newComment){

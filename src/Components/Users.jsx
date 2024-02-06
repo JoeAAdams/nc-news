@@ -26,11 +26,6 @@ export default function Users() {
             });
     }, []);
 
-    const login = (event) => {
-        console.log(event.target.value, "<<<<<");
-        setUser(event.target.value);
-    };
-
     return (
         <>
             <div className="users">

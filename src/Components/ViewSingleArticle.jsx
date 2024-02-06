@@ -27,7 +27,7 @@ export default function ViewSingleArticle() {
             />
             <p id="body">{article.body}</p>
             <CreateComment article_id={article_id} setRender={setRender}/>
-            <ArticleComments article_id={article_id} render={render}/>
+            <ArticleComments article_id={article_id} render={render} setRender={setRender}/>
         </div>
     );
 }

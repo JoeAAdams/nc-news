@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
-import { commentsVote } from "../Utils/API";
-import moment from "moment"
+import { useContext, useEffect, useState } from "react";
+import { commentsVote, deleteComment } from "../Utils/API";
+import moment from "moment";
 import "../CSS/Comment.css";
+import { UserContext } from "./UserProvider";
 
-export default function Comment({ comment }) {
+export default function Comment({ comment, setRender }) {
     const [isUpvoted, setIsUpvoted] = useState(false);
     const [isDownvoted, setIsDownvoted] = useState(false);
     const [votes, setVotes] = useState(comment.votes);
     const [voteChange, setVoteChange] = useState({ inc_votes: 0 });
     const [isUpdating, setIsUpdating] = useState(false);
     const [toggle, setToggle] = useState(false);
+    const { user } = useContext(UserContext);
+    const [isDeleted, setIsDeleted] = useState(false);
+    const [isUser, setIsUser] = useState(false);
 
     const handleVote = (event) => {
         const vote = event.target.value;
@@ -58,6 +62,7 @@ export default function Comment({ comment }) {
     };
 
     useEffect(() => {
+        if (comment.author === user.username) setIsUser(true);
         if (voteChange.inc_votes) {
             setIsUpdating(true);
             commentsVote(comment.comment_id, voteChange).then((response) => {
@@ -67,9 +72,17 @@ export default function Comment({ comment }) {
         }
     }, [toggle]);
 
- 
+    const removeComment = (event) => {
+        setIsDeleted(true)
+        deleteComment(event.target.value).then(
+            setRender(cur => !cur)
+        ).catch(() => {
+            setIsDeleted(false)
+        })
+    };
+
     return (
-        <div className="article-comment">
+        <div className={`article-comment ${isDeleted ? "hidden" : null}`}>
             <div className="vote-buttons">
                 <button
                     disabled={isUpdating}
@@ -93,8 +106,15 @@ export default function Comment({ comment }) {
                 <p>{comment.body}</p>
                 <div className="comment-info">
                     <p>{comment.author}</p>
-                    <p>{moment().to(comment.created_at.slice(0,19))}</p>
-                    <button>Delete</button>
+                    <p>{moment().to(comment.created_at.slice(0, 19))}</p>
+                    {isUser ? (
+                        <button
+                            onClick={removeComment}
+                            value={comment.comment_id}
+                        >
+                            Delete
+                        </button>
+                    ) : null}
                 </div>
             </div>
         </div>
