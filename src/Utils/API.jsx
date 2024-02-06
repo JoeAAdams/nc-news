@@ -45,3 +45,7 @@ export function getUser(username) {
         return response.data.user[0]
     })
 }
+
+export function deleteComment(comment_id) {
+    return newsApi.delete(`comments/${comment_id}`)
+}

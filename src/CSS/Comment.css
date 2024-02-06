@@ -23,10 +23,15 @@
 .comment-info {
     display: flex;
     position: relative;
+    align-items: center;
 }
 
 .comment {
     display: flex;
     flex-direction: column;
     height: 100%;
+}
+
+.comment-info button {
+    background-color: coral;
 }
