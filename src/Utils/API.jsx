@@ -30,7 +30,18 @@ export function commentsVote(comment_id, voteInc) {
 
 export function createNewComment(commentObject, article_id) {
     return newsApi.post(`articles/${article_id}/comments`, commentObject).then((response) => {
-        console.log(response);
         return response.data.comment[0]
+    })
+}
+
+export function users() {
+    return newsApi.get(`users`).then((response) => {
+        return response.data.users
+    })
+}
+
+export function getUser(username) {
+    return newsApi.get(`users/${username}`).then((response) => {
+        return response.data.user[0]
     })
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { commentsVote } from "../Utils/API";
+import moment from "moment"
 import "../CSS/Comment.css";
 
 export default function Comment({ comment }) {
@@ -92,7 +93,7 @@ export default function Comment({ comment }) {
                 <p>{comment.body}</p>
                 <div className="comment-info">
                     <p>{comment.author}</p>
-                    <p>{}</p>
+                    <p>{moment().to(comment.created_at.slice(0,19))}</p>
                     <button>Delete</button>
                 </div>
             </div>
