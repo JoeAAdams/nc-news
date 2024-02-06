@@ -1,0 +1,14 @@
+.header {
+    width: 100%;
+    height: 40px;
+    background-color: rgb(55, 54, 54);
+    color: white;
+    display: flex;
+    align-items: center;
+    position: fixed;
+}
+
+.header a {
+    color: white;
+    padding: 10px;
+}

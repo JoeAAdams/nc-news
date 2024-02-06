@@ -25,7 +25,7 @@ export default function ViewArticles() {
                                 src={article.article_img_url}
                                 alt={`image for ${article.title}`}
                             />
-                            <h3>{article.title}</h3>
+                            <h1>{article.title}</h1>
                             <p>{article.author}</p>
                         </li>
                     </Link>
