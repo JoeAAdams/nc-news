@@ -5,3 +5,26 @@
 .downvoted {
     background-color: coral;
 }
+
+.vote-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.vote-buttons p {
+    margin: 4px 0 4px 0;
+}
+
+.article-comment {
+    display: flex;
+    gap: 14px;
+}
+
+.comment-info {
+    display: flex;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+}

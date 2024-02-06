@@ -24,7 +24,6 @@ export function fetchArticleComments(article_id) {
 
 export function commentsVote(comment_id, voteInc) {
     return newsApi.patch(`comments/${comment_id}`, voteInc).then((response) => {
-        console.log(response.data.comment[0]);
         return response.data.comment[0];
     });
 }
