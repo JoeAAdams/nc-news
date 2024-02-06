@@ -27,3 +27,10 @@ export function commentsVote(comment_id, voteInc) {
         return response.data.comment[0];
     });
 }
+
+export function createNewComment(commentObject, article_id) {
+    return newsApi.post(`articles/${article_id}/comments`, commentObject).then((response) => {
+        console.log(response);
+        return response.data.comment[0]
+    })
+}

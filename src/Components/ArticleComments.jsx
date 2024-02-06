@@ -3,14 +3,13 @@ import { fetchArticleComments } from "../Utils/API";
 import Comment from "./Comment";
 import "../CSS/ArticleComments.css";
 
-export default function ArticleComments({ article_id }) {
-    const [comments, setComments] = useState([]);
-
+export default function ArticleComments({ article_id, render}) {
+    const [comments, setComments] = useState([])
     useEffect(() => {
         fetchArticleComments(article_id).then((response) => {
             setComments(response);
         });
-    }, []);
+    }, [render]);
 
     return (
         <section>

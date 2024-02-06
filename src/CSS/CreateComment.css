@@ -1,0 +1,32 @@
+#comment-area {
+    height: 100px;
+    width: 450px;
+    resize: none;
+}
+
+.red-outline {
+    border: 3px solid red;
+}
+
+.create-new-comment {
+    width: 450px;
+    margin-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-new-comment button {
+    margin-top: 4px;
+    width: 20%;
+}
+
+#submit-and-error {
+    display: flex;
+    height: 30px;
+    align-items: center;
+    gap: 10px;
+}
+
+.hidden {
+    display: none;
+}
