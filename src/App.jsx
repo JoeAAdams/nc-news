@@ -3,13 +3,22 @@ import "./CSS/App.css";
 import ViewArticles from "./Components/ViewArticles";
 import { Route, Routes } from "react-router-dom";
 import ViewSingleArticle from "./Components/ViewSingleArticle";
+import Header from "./Components/Header";
 
 function App() {
     return (
-        <Routes>
-            <Route path="/" element={<ViewArticles />} />
-            <Route path="/article/:article_id" element={<ViewSingleArticle/>} />
-        </Routes>
+        <>
+            <Header/>
+            <div className="page"> 
+                <Routes>
+                    <Route path="/" element={<ViewArticles />} />
+                    <Route
+                        path="/article/:article_id"
+                        element={<ViewSingleArticle />}
+                    />
+                </Routes>
+            </div>
+        </>
     );
 }
 

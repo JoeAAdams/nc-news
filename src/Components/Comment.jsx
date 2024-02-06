@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { commentsVote } from "../Utils/API";
 import "../CSS/Comment.css";
+import moment from "moment";
 
 export default function Comment({ comment }) {
     const [isUpvoted, setIsUpvoted] = useState(false);
@@ -66,6 +67,7 @@ export default function Comment({ comment }) {
         }
     }, [toggle]);
 
+
     return (
         <div className="article-comment">
             <div className="vote-buttons">
@@ -91,7 +93,7 @@ export default function Comment({ comment }) {
                 <p>{comment.body}</p>
                 <div className="comment-info">
                     <p>{comment.author}</p>
-                    <p>{Date(comment.created_at)}</p>
+                    <p>{moment().to(comment.created_at.slice(0,19))}</p>
                 </div>
             </div>
         </div>
