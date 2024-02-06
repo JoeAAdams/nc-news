@@ -22,9 +22,11 @@
 
 .comment-info {
     display: flex;
+    position: relative;
 }
 
 .comment {
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
