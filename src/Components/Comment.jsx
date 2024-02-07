@@ -103,7 +103,7 @@ export default function Comment({ comment, setRender }) {
                 </button>
             </div>
             <div className="comment">
-                <p>{comment.body}</p>
+                <p className="comment-body">{comment.body}</p>
                 <div className="comment-info">
                     <p>{comment.author}</p>
                     <p>{moment().to(comment.created_at.slice(0, 19))}</p>

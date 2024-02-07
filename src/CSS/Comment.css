@@ -22,14 +22,18 @@
 
 .comment-info {
     display: flex;
-    position: relative;
     align-items: center;
+}
+
+.comment-body {
+    flex-grow: 1;
 }
 
 .comment {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    flex: 1 0 200px;
+    /* height: 100%; */
 }
 
 .comment-info button {

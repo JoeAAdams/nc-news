@@ -25,6 +25,19 @@
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.493);
 
 }
+.article-info  {
+    display: flex;
+    flex-direction: column;
+}
+
+.article-info h2 {
+    flex-grow: 1
+}
+.article-stats {
+    gap: 20px;
+    display: flex;
+
+}
 
 .article-item img {
     height: 200px;
@@ -35,4 +48,22 @@
     flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.filters {
+    margin: 30px -200px 0 20px;
+    z-index: 1;
+}
+
+.sort {
+    flex-grow: 1;
+}
+
+.sort-by {
+    display: flex;
+    width: 180px;
+}
+
+.comment-count {
+    flex-grow: 1;
 }
