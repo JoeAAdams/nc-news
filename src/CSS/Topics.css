@@ -1,0 +1,38 @@
+.topics {
+    flex: 0 0 180px;
+    flex-wrap: wrap;
+    width: 180px;
+    margin-top: 40px;
+    border: 1px solid black;
+    height: fit-content;
+    padding: 10px 0 10px 0;
+    margin: 30px -200px 0 20px;
+    z-index: 1;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.topic {
+    list-style-type: none;
+    padding: 10px 0 10px 0;
+    font-size: 20px;
+
+}
+
+.topic .description {
+    visibility: hidden;
+    width: auto;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    font-size: 15px;
+
+    position: absolute;
+    z-index: 2;
+}
+
+.topic:hover .description {
+    visibility: visible;
+}

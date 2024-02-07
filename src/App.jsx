@@ -12,6 +12,7 @@ function App() {
             <Header />
             <div className="page">
                 <Routes>
+                    <Route path=":topic" element={<ViewArticles/>}/>
                     <Route path="/" element={<ViewArticles />} />
                     <Route
                         path="/article/:article_id"
