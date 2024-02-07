@@ -18,12 +18,12 @@ export default function Topics() {
                 {topics.map((topic) => {
                     return (
                         <li key={topic.slug} className="topic">
-                            <Link to={`/${topic.slug}`}>
-                                <p>
+                            <Link to={`/topic/${topic.slug}`}>
+                                <div>
                                     {topic.slug.slice(0, 1).toUpperCase() +
                                         topic.slug.slice(1)}
                                     <p className="description">{topic.description}</p>
-                                </p>
+                                </div>
                             </Link>
                         </li>
                     );
