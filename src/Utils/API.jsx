@@ -4,8 +4,8 @@ const newsApi = axios.create({
     baseURL: "https://nc-news-wpw8.onrender.com/api/",
 });
 
-export function fetchArticles() {
-    return newsApi("/articles").then((response) => {
+export function fetchArticles(queries) {
+    return newsApi("/articles",queries).then((response) => {
         return response.data.articles;
     });
 }
@@ -48,4 +48,10 @@ export function getUser(username) {
 
 export function deleteComment(comment_id) {
     return newsApi.delete(`comments/${comment_id}`)
+}
+
+export function getTopics() {
+    return newsApi.get("topics").then((response) => {
+        return response.data.topics
+    })
 }

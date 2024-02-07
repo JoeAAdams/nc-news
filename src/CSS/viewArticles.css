@@ -1,4 +1,9 @@
+.homepage {
+    display: flex;
+}
+
 .articles-list {
+    flex: 1 1;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -6,6 +11,7 @@
 }
 
 .article-item {
+    flex: 1 1 200px;
     gap: 10px;
     display: flex;
     width: 800px;
