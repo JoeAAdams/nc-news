@@ -9,21 +9,24 @@ export default function ViewArticles() {
     const { topic } = useParams();
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState([false]);
-    const [sort, setSort] = useSearchParams({
-        params: {
-            topic: undefined,
-            sort_by: undefined,
-            order: undefined
-        }
-    });
-    const [descToggle, setDescToggle] = useState(false);
+    const [sort, setSort] = useSearchParams();
+    const [descToggle, setDescToggle] = useState(true);
+    const [sortValue, setSortValue] = useState("no_sort");
 
-    // console.log(newParams);
+    console.log(useParams());
     useEffect(() => {
+        if (!topic && !sort.get("sort_by") && !sort.get("order")){
+            // Reset sort and order when page is reloaded to fresh
+            setSortValue("no_sort")
+            setDescToggle(true)
+        };;
         const searchQuery = {
-            params: {topic,sort_by: sort.get("sort_by"), order: sort.get("order")},
+            params: {
+                topic,
+                sort_by: sort.get("sort_by"),
+                order: sort.get("order"),
+            },
         };
-        // console.log(sort.getAll("sort_by", "order"));
         setIsLoading(true);
         fetchArticles(searchQuery).then((data) => {
             setArticles(data);
@@ -32,16 +35,15 @@ export default function ViewArticles() {
     }, [topic, sort]);
 
     function handleSort(event) {
-        // const query = { sort_by: event.target.value };
-        sort.set("sort_by", event.target.value )
+        sort.set("sort_by", event.target.value);
+        setSortValue(event.target.value);
         setSort(sort);
     }
 
-    function handleSortOrder (event) {
-        setDescToggle(cur => !cur)
-        // const query = { order: event.target.value }
-        sort.set("order", event.target.value)
-        setSort(sort)
+    function handleSortOrder(event) {
+        setDescToggle((cur) => !cur);
+        sort.set("order", event.target.value);
+        setSort(sort);
     }
 
     return (
@@ -49,8 +51,13 @@ export default function ViewArticles() {
             <section className="filters">
                 <Topics />
                 <div className="sort-by">
-                    <select name="sort" onChange={handleSort} className="sort">
-                        <option value="created_at">No sort</option>
+                    <select
+                        name="sort"
+                        onChange={handleSort}
+                        className="sort"
+                        value={sortValue}
+                    >
+                        <option value="no_sort">No sort</option>
                         <option value="created_at">Date</option>
                         <option value="votes">Votes</option>
                         <option value="comment_count">Comments</option>
@@ -83,7 +90,9 @@ export default function ViewArticles() {
                                     <div className="article-stats">
                                         <p>{article.author}</p>
                                         <p>Votes: {article.votes}</p>
-                                        <p className="comment-count">Comments: {article.comment_count}</p>
+                                        <p className="comment-count">
+                                            Comments: {article.comment_count}
+                                        </p>
                                         <p>
                                             {moment
                                                 .parseZone(article.created_at)
