@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import ViewSingleArticle from "./Components/ViewSingleArticle";
 import Header from "./Components/Header";
 import Users from "./Components/Users";
+import ErrorPage from "./Components/ErrorPage";
 
 function App() {
     
@@ -19,8 +20,7 @@ function App() {
                         element={<ViewSingleArticle />}
                     />                
                     <Route path="/login" element={<Users />}/>
-    
-
+                    <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </div>
         </>

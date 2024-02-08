@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../CSS/viewArticles.css";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useParams, useSearchParams } from "react-router-dom";
 import { fetchArticles } from "../Utils/API";
 import Topics from "./Topics";
 import moment from "moment";
@@ -12,8 +12,9 @@ export default function ViewArticles() {
     const [sort, setSort] = useSearchParams();
     const [descToggle, setDescToggle] = useState(true);
     const [sortValue, setSortValue] = useState("no_sort");
+    const [redirect, setRedirect] = useState(false)
 
-    console.log(useParams());
+
     useEffect(() => {
         if (!topic && !sort.get("sort_by") && !sort.get("order")){
             // Reset sort and order when page is reloaded to fresh
@@ -31,6 +32,8 @@ export default function ViewArticles() {
         fetchArticles(searchQuery).then((data) => {
             setArticles(data);
             setIsLoading(false);
+        }).catch(() => {
+            setRedirect(true)
         });
     }, [topic, sort]);
 
@@ -106,6 +109,8 @@ export default function ViewArticles() {
                     );
                 })}
             </ul>
+            {redirect ? (<Navigate to={"*"}/>) : null}
+            
         </div>
     );
 }

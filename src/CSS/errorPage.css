@@ -1,0 +1,13 @@
+.error-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: -50px;
+    font-size: 30px;
+}
+
+#return {
+    border-bottom: 1px solid black;
+}
