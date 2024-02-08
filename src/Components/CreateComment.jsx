@@ -3,12 +3,12 @@ import { createNewComment } from "../Utils/API";
 import "../CSS/CreateComment.css";
 import { UserContext } from "./UserProvider";
 
-export default function CreateComment({article_id, setRender}) {
+export default function CreateComment({ article_id, setRender, setComments }) {
     const [newComment, setNewComment] = useState("");
     const [isDisabled, setIsDisabled] = useState(false);
     const [error, setError] = useState(false);
-    const {user} = useContext(UserContext)
- 
+    const [noComment, setNoComment] = useState(true);
+    const { user } = useContext(UserContext);
 
     const handleNewComment = (event) => {
         event.preventDefault();
@@ -16,20 +16,26 @@ export default function CreateComment({article_id, setRender}) {
             username: user.username,
             body: newComment,
         };
-        if (newComment){
+        if (newComment) {
+            // setComments((comments) => [
+
+            // ])
+            setNoComment(false);
             setIsDisabled(true);
             createNewComment(commentObject, article_id)
-                .then((response) => {
+                .then(() => {
                     setIsDisabled(false);
-                    setError(false)
-                    setRender(cur => !cur)
+                    setError(false);
+                    setRender((cur) => !cur);
+                    setNoComment(true)
+                    setNewComment("")
                 })
                 .catch((err) => {
                     setIsDisabled(false);
                     setError(true);
                 });
         } else {
-            setError(true)
+            setError(true);
         }
     };
 
@@ -53,7 +59,15 @@ export default function CreateComment({article_id, setRender}) {
                 />
                 <div id="submit-and-error">
                     <button>Submit</button>
-                    <p aria-label="error message" className={error ? "error" : "hidden"}>error sending message</p>
+                    <div className={error ? "error" : "hidden"}>
+                        {noComment ? (
+                            <p aria-label="error message">comment required</p>
+                        ) : (
+                            <p aria-label="error message">
+                                comment failed to post
+                            </p>
+                        )}
+                    </div>
                 </div>
             </form>
         </div>
